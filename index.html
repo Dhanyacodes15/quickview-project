@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuickView</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('/static/back.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        form {
+            margin-bottom: 25px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #3498db;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        h2 {
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QuickView</h1>
+        <form method="POST">
+            <input type="text" name="youtube_url" placeholder="Enter YouTube URL" required>
+            <button type="submit">Summarize</button>
+        </form>
+
+        {% if summary %}
+            <h2>Summary:</h2>
+            <div class="summary">{{ summary }}</div>
+        {% elif error %}
+            <h2 style="color:red;">Error:</h2>
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
